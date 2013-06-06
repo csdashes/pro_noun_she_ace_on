@@ -1,6 +1,8 @@
 #!/bin/env ruby1.9
 # encoding: utf-8
+
 require 'fuzzystringmatch'
+require 'text/hyphen'
 require_relative 'greeklish_converter'
 
 def find_best(word, array)
@@ -30,7 +32,10 @@ top_list = []
 
 top_top_list = []
 
-my_word = my_word.split(//)
+hh = Text::Hyphen.new(:language => "it", :left => 0, :right => 0)
+my_word = hh.visualize(my_word," ").split(" ")
+
+# my_word = my_word.split(//)
 
 remaining_parts_of_my_word = true
 
