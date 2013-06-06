@@ -225,37 +225,60 @@
             <a rel="external" id="button">&#xF011;</a>  
             <span></span>  
         </section>
-        
+
+
+
+
+
+
+
+
+
         <div id="hiddenone">
-		<?php
-        if(isset($_GET['keyword'])) {
-            $toruby = $_GET['keyword'];
-        } else {
-            $toruby = "";
-        }
-        $cmd = "ruby test.rb $toruby";
-		$input = system($cmd);
-        echo "<br/><br/>";
-        $pairs = explode('|', $input);
-        ?> 
+            <?php
+
+                if(isset($_GET['keyword'])) {
+                   $torubytext = $_GET['keyword'];
+                   $toruby = 'toruby.txt';
+                   file_put_contents($toruby, $torubytext);
+                }
+
+
+
+
+                sleep(3);
+                $fromruby = 'fromruby.txt';
+                $input = file_get_contents($fromruby);
+                $pairs = explode('|', $input);
+            ?>
         </div>
         <div id="mywords">
-        <?php
-        foreach ($pairs as $pair) {
-            $pair_contents = explode(' ', $pair);
-            $substring = $pair_contents[0];
-            $fullstring = $pair_contents[1];
-            $splitted_fullstring = explode($substring, $fullstring);
-            $before = $splitted_fullstring[0];
-            $after = $splitted_fullstring[1];
-            echo "<span class='restoftheword'>$before</span><span id='learningwordpart'>$substring</span><span class='restoftheword'>$after</span><span class='space'></span>";
-        }
-		?>
+
+            <?php
+                    foreach ($pairs as $pair) {
+                        $pair_contents = explode(' ', $pair);
+                        $substring = $pair_contents[0];
+                        $fullstring = $pair_contents[1];
+                        $splitted_fullstring = explode($substring, $fullstring);
+                        $before = $splitted_fullstring[0];
+                        $after = $splitted_fullstring[1];
+                        echo "<span class='restoftheword'>$before</span><span id='learningwordpart'>$substring</span><span class='restoftheword'>$after</span><span class='space'></span>";
+                    }
+                    ?>
+        </div>
         <form method="GET">
             <input type="text" name="keyword" value="Your word!" id="keyword">
             <input type="submit" id="go" value="GO!">
         </form>
-        </div>
+
+
+
+
+
+
+
+
+
         <script type="text/javascript">
         $(document).ready(function(){  
             if($("#keyword").val() === "Your word!") {
@@ -263,7 +286,8 @@
             } else {
                 $("#keyword").removeClass("gray");
             }
-            $('#button').click(function(){  
+            
+            $('#button').click(function(){
                 $(this).toggleClass('on');  
                 if($(this).hasClass('on')) {
                     $('.restoftheword').show('slow','linear',{});
@@ -280,6 +304,27 @@
                 }
             });
         }); 
+
+        // function hi(){
+        //     $('#hiddenone').load('test.txt');
+        //     var fullfullstring = $('#hiddenone').html();
+        //     var pairs = fullfullstring.split("|");
+        //     var finaloutput = "";
+        //     for(var i=0; i<pairs.length; i++) {
+        //         var pair_contents = pairs[i].split(" ");
+        //         var substring = pair_contents[0];
+        //         var fullstring = pair_contents[1];
+        //         var splitted_fullstring = fullstring.split(substring);
+
+        //         var before = splitted_fullstring[0];
+        //         var after = splitted_fullstring[1];
+
+        //         finaloutput = finaloutput + "<span class='restoftheword'>" + before + "</span><span id='learningwordpart'>" + substring + "</span><span class='restoftheword'>" + after + "</span><span class='space'></span>";
+        //     }
+        //     $('#mywords').html(finaloutput);
+        // }
+        // setInterval(hi, 2000);
+        // hi();
         </script>
     </body>
 </html>
