@@ -20,10 +20,8 @@ def find_best(word, array)
   return max_word
 end
 
-my_word = 'παρακαλώ'.greeklish
-puts "My word is: " + my_word
-
-
+my_word = ARGV[0].greeklish
+# puts "My word is: " + my_word
 
 index = 0
 index_end = 0
@@ -38,9 +36,10 @@ remaining_parts_of_my_word = true
 
 try = 0
 
+output = ''
 
 while(remaining_parts_of_my_word)
-  File.open("./mobypron2.unc", "r") do |file_handle|
+  File.open("./dictionary.txt", "r") do |file_handle|
     file_handle.each_line do |line|
         word = line.split[0]
 
@@ -67,13 +66,18 @@ while(remaining_parts_of_my_word)
   
   try += 1
   
-  p top_list
+  # p top_list
   
   if index_end >= (my_word.length-1) #|| try > 2
     remaining_parts_of_my_word = false
-    top_top_list << find_best(my_word[index..index_end].join(""), top_list)
+    best_word = find_best(my_word[index..index_end].join(""), top_list)
+    top_top_list << best_word
+    output << my_word[index..index_end].join("") + " " + best_word 
   else
-    top_top_list << find_best(my_word[index..index_end].join(""), top_list)
+    best_word = find_best(my_word[index..index_end].join(""), top_list)
+    top_top_list << best_word
+    output << my_word[index..index_end].join("") + " " + best_word + "|"
+    
     index_end += 1
     index = index_end
     top_list = []
@@ -81,5 +85,6 @@ while(remaining_parts_of_my_word)
 end
 
 
-p top_top_list
-p index_end
+# p top_top_list
+# p index_end
+p output
