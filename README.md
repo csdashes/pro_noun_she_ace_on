@@ -1,6 +1,6 @@
 pro_noun_she_ace_on
 ===================
-A project developed during the Thessaloniki Hackathon organised by the Memrise team, in June 2013.
+A project developed during the Thessaloniki Hackathon organised by the Memrise team and the Computer Science Department of the Aristotle University of Thessaloniki, in June 2013.
 
 Idea
 -------
