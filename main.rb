@@ -1,8 +1,10 @@
 #!/bin/env ruby1.9
 # encoding: utf-8
 
+require 'rubygems'
 require 'fuzzystringmatch'
 require 'text/hyphen'
+require 'active_support'
 require_relative 'greeklish_converter'
 
 def find_best(word, array)

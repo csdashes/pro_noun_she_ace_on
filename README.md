@@ -19,10 +19,10 @@ Implementation
 
 The implementation is based on Ruby1.9, PHP, JS and jQuery library.
 
-The dependencies listed are required if you wish to run the application. (the list is not completed)
-* [.dependencie](http://) -- `gem install lala`
-* [.dependencie](http://) -- `gem install lala`
-* [.dependencie](http://) -- `gem install lala -v 3.6.1`
+The dependencies listed are required if you wish to run the application.
+* [.dependencie](https://github.com/kiyoka/fuzzy-string-match) -- `gem install fuzzy-string-match`
+* [.dependencie](https://github.com/halostatue/text-hyphen) -- `gem install text-hyphen`
+* [.dependencie](https://github.com/rails/rails/tree/master/activesupport) -- `gem install activesupport`
 
 Running the application
 -------

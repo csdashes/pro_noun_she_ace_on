@@ -1,8 +1,5 @@
 #!/bin/env ruby1.9
 # encoding: utf-8
-
-require 'rubygems'
-require 'active_support'
  
 class String
   # Converts the Greek Unicode characters contained in the string
