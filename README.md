@@ -34,3 +34,7 @@ To run the application, after you installed all dependencies, you have to:
 This will start the script that is waiting for Greek keywords and will translate them into Greek-lish and finally find the correct corresponding English words for it.
 For the Web Interface, just open `index.php`. If the page is not loading, enter a sample parameter in the URL like this:
 `localhost:8888/rubytest/?keyword=sample` and the application will start running.
+
+Screenshot
+--------
+![Screenshot](http://i.imgflip.com/1vd2m.gif)
