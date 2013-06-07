@@ -7,6 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>My Awesome MemThing</title>
         <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+        <script src="jquery.js"></script>
         <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
         <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
         <link href='http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:700' rel='stylesheet' type='text/css'>
@@ -243,28 +244,30 @@
                    file_put_contents($toruby, $torubytext);
                 }
 
+                // wait for responce from ruby script
+                while(!file_exists('fromruby.txt')){}
 
-
-
-                sleep(3);
                 $fromruby = 'fromruby.txt';
                 $input = file_get_contents($fromruby);
                 $pairs = explode('|', $input);
             ?>
         </div>
+        <?php 
+                // echo $input;
+                ?>
         <div id="mywords">
-
             <?php
-                    foreach ($pairs as $pair) {
-                        $pair_contents = explode(' ', $pair);
-                        $substring = $pair_contents[0];
-                        $fullstring = $pair_contents[1];
-                        $splitted_fullstring = explode($substring, $fullstring);
-                        $before = $splitted_fullstring[0];
-                        $after = $splitted_fullstring[1];
-                        echo "<span class='restoftheword'>$before</span><span id='learningwordpart'>$substring</span><span class='restoftheword'>$after</span><span class='space'></span>";
-                    }
-                    ?>
+                foreach ($pairs as $pair) {
+                    $pair_contents = explode(' ', $pair);
+                    $substring = $pair_contents[0];
+                    $fullstring = $pair_contents[1];
+                    $splitted_fullstring = explode($substring, $fullstring);
+                    $before = $splitted_fullstring[0];
+                    $after = $splitted_fullstring[1];
+                    echo "<span class='restoftheword'>$before</span><span id='learningwordpart'>$substring</span><span class='restoftheword'>$after</span><span class='space'></span>";
+                }
+                unlink('fromruby.txt');
+            ?>
         </div>
         <form method="GET">
             <input type="text" name="keyword" value="Your word!" id="keyword">
